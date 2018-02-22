@@ -10,6 +10,11 @@
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hibernate.search.autoregister_listeners">true</property>
         <property name="hibernate.validator.apply_to_ddl">false</property>
-        <mapping class="com.proyecto.agenda.modelo.Persona"/>
+        <mapping class="com.proyecto.agenda.modelo.Personas"/>
+        <mapping class="com.proyecto.agenda.modelo.Departamentos"/>
+        <mapping class="com.proyecto.agenda.modelo.Telefonos"/>
+        <mapping class="com.proyecto.agenda.modelo.Categorias"/>
+        <mapping class="com.proyecto.agenda.modelo.Empleados"/>
+        <mapping class="com.proyecto.agenda.modelo.Direcciones"/>
     </session-factory>
 </hibernate-configuration>

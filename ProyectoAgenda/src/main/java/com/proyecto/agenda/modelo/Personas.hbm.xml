@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 22-feb-2018 8:47:24 by Hibernate Tools 5.2.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="agenda" dynamic-insert="false" dynamic-update="false" mutable="true" name="Personas" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="personas">
+        <id name="idpersonas" type="java.lang.Integer">
+            <column name="idpersonas"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="Empleados" embed-xml="true" fetch="select" insert="true" name="empleados" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="idEmpleado"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="nombre" optimistic-lock="true" type="string" unique="false">
+            <column length="45" name="nombre" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="apellido1" optimistic-lock="true" type="string" unique="false">
+            <column length="45" name="apellido1" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="apellido2" optimistic-lock="true" type="string" unique="false">
+            <column length="45" name="apellido2"/>
+        </property>
+        <property generated="never" lazy="false" name="dni" optimistic-lock="true" type="string" unique="false">
+            <column length="20" name="dni"/>
+        </property>
+        <property generated="never" lazy="false" name="fechaNacimiento" optimistic-lock="true" type="date" unique="false">
+            <column length="10" name="fechaNacimiento"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="direccioneses" optimistic-lock="true" sort="unsorted" table="direcciones">
+            <key on-delete="noaction">
+                <column name="idPersona"/>
+            </key>
+            <one-to-many class="Direcciones" embed-xml="true" not-found="exception"/>
+        </set>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="telefonoses" optimistic-lock="true" sort="unsorted" table="telefonos">
+            <key on-delete="noaction">
+                <column name="idPersona"/>
+            </key>
+            <one-to-many class="Telefonos" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>

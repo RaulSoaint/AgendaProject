@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 22-feb-2018 8:47:24 by Hibernate Tools 5.2.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="agenda" dynamic-insert="false" dynamic-update="false" mutable="true" name="Empleados" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="empleados">
+        <id name="idempleados" type="java.lang.Integer">
+            <column name="idempleados"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="Categorias" embed-xml="true" fetch="select" insert="true" name="categorias" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="idCategoria"/>
+        </many-to-one>
+        <many-to-one class="Departamentos" embed-xml="true" fetch="select" insert="true" name="departamentos" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="idDepartamento"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="codEmpleado" optimistic-lock="true" type="string" unique="false">
+            <column length="45" name="codEmpleado" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="salario" optimistic-lock="true" type="string" unique="false">
+            <column length="45" name="salario"/>
+        </property>
+        <property generated="never" lazy="false" name="fechaAlta" optimistic-lock="true" type="timestamp" unique="false">
+            <column length="19" name="fechaAlta"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="personases" optimistic-lock="true" sort="unsorted" table="personas">
+            <key on-delete="noaction">
+                <column name="idEmpleado"/>
+            </key>
+            <one-to-many class="Personas" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>

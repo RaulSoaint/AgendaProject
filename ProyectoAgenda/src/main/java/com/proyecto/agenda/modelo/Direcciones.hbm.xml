@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 22-feb-2018 8:47:24 by Hibernate Tools 5.2.3.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="agenda" dynamic-insert="false" dynamic-update="false" mutable="true" name="Direcciones" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="direcciones">
+        <id name="iddirecciones" type="java.lang.Integer">
+            <column name="iddirecciones"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="Personas" embed-xml="true" fetch="select" insert="true" name="personas" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="idPersona"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="direccion" optimistic-lock="true" type="string" unique="false">
+            <column length="45" name="direccion" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="codPostal" optimistic-lock="true" type="string" unique="false">
+            <column length="45" name="codPostal" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="localidad" optimistic-lock="true" type="string" unique="false">
+            <column length="45" name="localidad" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="provincia" optimistic-lock="true" type="string" unique="false">
+            <column length="45" name="provincia" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>
