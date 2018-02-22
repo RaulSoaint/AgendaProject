@@ -118,7 +118,7 @@ public class Personas implements java.io.Serializable {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "personas")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "personas")
 	public Set<Direcciones> getDireccioneses() {
 		return this.direccioneses;
 	}
