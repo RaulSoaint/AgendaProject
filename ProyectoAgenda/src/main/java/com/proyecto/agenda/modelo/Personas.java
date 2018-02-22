@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-//
+
 @Entity
 @Table(name = "personas", catalog = "agenda")
 public class Personas implements java.io.Serializable {
@@ -118,7 +118,7 @@ public class Personas implements java.io.Serializable {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "personas")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "personas")
 	public Set<Direcciones> getDireccioneses() {
 		return this.direccioneses;
 	}

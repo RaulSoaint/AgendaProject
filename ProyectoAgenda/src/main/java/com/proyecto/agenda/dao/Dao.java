@@ -1,10 +1,11 @@
 package com.proyecto.agenda.dao;
-
+//
 import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import com.proyecto.agenda.modelo.Personas;
 import com.proyecto.agenda.util.HibernateUtils;
 
 public class Dao {
@@ -25,5 +26,12 @@ public class Dao {
 		contactos = query.list();
 		session.close();
 		return contactos;
+	}
+	
+	public static Personas busquedaContacto(int idPersona){
+		Session session = HibernateUtils.getSession();
+		Personas persona = (Personas) session.get(Personas.class,idPersona);
+		session.close();
+		return persona;
 	}
 }
