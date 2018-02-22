@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
+//
 @Entity
 @Table(name = "personas", catalog = "agenda")
 public class Personas implements java.io.Serializable {
