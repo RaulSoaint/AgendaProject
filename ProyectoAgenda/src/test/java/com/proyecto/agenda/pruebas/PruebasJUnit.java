@@ -96,7 +96,6 @@ public class PruebasJUnit {
 			assertTrue(persona.getApellido2() != null);
 		}
 		
-		
 	}
 	*/
 	@SuppressWarnings("unchecked")
