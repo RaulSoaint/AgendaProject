@@ -26,7 +26,7 @@ public class HomeController {
 	public String home(Model model) {
 				
 		Session session = HibernateUtils.getSession();
-		Query query = session.createQuery("from Persona");
+		Query query = session.createQuery("from Personas");
 		List personas=query.list();
 		model.addAttribute("listado", personas );
 		

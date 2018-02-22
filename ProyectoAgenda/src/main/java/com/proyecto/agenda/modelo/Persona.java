@@ -1,47 +1,92 @@
 package com.proyecto.agenda.modelo;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.io.Serializable;
+import javax.persistence.*;
+import java.util.Date;
+import java.util.List;
 
+
+/**
+ * The persistent class for the personas database table.
+ * 
+ */
 @Entity
-@Table(name = "persona", catalog = "agenda")
-public class Persona implements java.io.Serializable {
-
+@Table(name="personas")
+@NamedQuery(name="Persona.findAll", query="SELECT p FROM Persona p")
+public class Persona implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
-	private Integer id;
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int idpersonas;
+
+	private String apellido1;
+
+	private String apellido2;
+
+	private String dni;
+
+	@Temporal(TemporalType.DATE)
+	private Date fechaNacimiento;
+
 	private String nombre;
-	private String apellido;
+
+	//bi-directional many-to-one association to Direccione
+	@OneToMany(mappedBy="persona")
+	private List<Direccione> direcciones;
+
+	//bi-directional many-to-one association to Empleado
+	@ManyToOne
+	@JoinColumn(name="idEmpleado")
+	private Empleado empleado;
+
+	//bi-directional many-to-one association to Telefono
+	@OneToMany(mappedBy="persona")
+	private List<Telefono> telefonos;
 
 	public Persona() {
 	}
 
-	public Persona(String nombre) {
-		this.nombre = nombre;
+	public int getIdpersonas() {
+		return this.idpersonas;
 	}
 
-	public Persona(String nombre, String apellido) {
-		this.nombre = nombre;
-		this.apellido = apellido;
+	public void setIdpersonas(int idpersonas) {
+		this.idpersonas = idpersonas;
 	}
 
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
-
-	@Column(name = "id", unique = true, nullable = false)
-	public Integer getId() {
-		return this.id;
+	public String getApellido1() {
+		return this.apellido1;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setApellido1(String apellido1) {
+		this.apellido1 = apellido1;
 	}
 
-	@Column(name = "nombre", nullable = false, length = 25)
+	public String getApellido2() {
+		return this.apellido2;
+	}
+
+	public void setApellido2(String apellido2) {
+		this.apellido2 = apellido2;
+	}
+
+	public String getDni() {
+		return this.dni;
+	}
+
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+
+	public Date getFechaNacimiento() {
+		return this.fechaNacimiento;
+	}
+
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
 	public String getNombre() {
 		return this.nombre;
 	}
@@ -50,13 +95,56 @@ public class Persona implements java.io.Serializable {
 		this.nombre = nombre;
 	}
 
-	@Column(name = "apellido", length = 25)
-	public String getApellido() {
-		return this.apellido;
+	public List<Direccione> getDirecciones() {
+		return this.direcciones;
 	}
 
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
+	public void setDirecciones(List<Direccione> direcciones) {
+		this.direcciones = direcciones;
+	}
+
+	public Direccione addDireccione(Direccione direccione) {
+		getDirecciones().add(direccione);
+		direccione.setPersona(this);
+
+		return direccione;
+	}
+
+	public Direccione removeDireccione(Direccione direccione) {
+		getDirecciones().remove(direccione);
+		direccione.setPersona(null);
+
+		return direccione;
+	}
+
+	public Empleado getEmpleado() {
+		return this.empleado;
+	}
+
+	public void setEmpleado(Empleado empleado) {
+		this.empleado = empleado;
+	}
+
+	public List<Telefono> getTelefonos() {
+		return this.telefonos;
+	}
+
+	public void setTelefonos(List<Telefono> telefonos) {
+		this.telefonos = telefonos;
+	}
+
+	public Telefono addTelefono(Telefono telefono) {
+		getTelefonos().add(telefono);
+		telefono.setPersona(this);
+
+		return telefono;
+	}
+
+	public Telefono removeTelefono(Telefono telefono) {
+		getTelefonos().remove(telefono);
+		telefono.setPersona(null);
+
+		return telefono;
 	}
 
 }
